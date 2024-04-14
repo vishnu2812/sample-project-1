@@ -9,6 +9,7 @@ export const checkout = async (req, res) => {
       currency: "INR",
     };
     const order = await instance.orders.create(options); // Create the order object
+    
     console.log(options);
     res.status(200).json({
       success: true,
@@ -37,21 +38,15 @@ export const paymentVerification = async (req, res) => {
     const isAuthentic = expectedSignature === razorpay_signature;
 
     if (isAuthentic) {
-      // Get the user ID from the request or from the session, depending on your application's setup
-      const userId = req.user._id; // Assuming you're using authentication middleware to set req.user
-      console.log(userId);
-      // Create a new payment record in the database
-      const payment = await Payment.create({
-        userId,
+      await Payment.create({
         razorpay_order_id,
         razorpay_payment_id,
         razorpay_signature,
-        amount: req.body.amount, // Assuming the amount is passed in the request body
-        date: new Date(), // Current date and time
       });
 
-      // Redirect to the payment success page with the Razorpay payment ID
-      res.redirect(`http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`);
+      res.redirect(
+        `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+      );
     } else {
       res.status(400).json({
         success: false,

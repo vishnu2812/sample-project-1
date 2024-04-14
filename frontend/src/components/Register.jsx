@@ -1,17 +1,31 @@
 
 import React, { useState } from 'react';
 import '../styles/Login.css';
+import  { useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios'; // Import Axios for making HTTP requests
 
 
 function Register() {
-   
+    const navigate = useNavigate();
+
     const [playerName, setPlayerName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Check if user is logged in when component mounts
+        const authToken = localStorage.getItem('authToken');
+        console.log('authToken:', authToken);
+        if (authToken) {
+
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +44,11 @@ function Register() {
         }
     };
 
-  
+  if (isLoggedIn) {
+        // Redirect logged-in users to the home page
+        navigate('/');
+        return null; // Avoid rendering the login form
+    }
 
     return (
         <div className='completebody'>
@@ -53,7 +71,7 @@ function Register() {
     <input
             type='Text'
             id='PlayerName'
-            placeholder='Player Name'
+            placeholder=' Name'
             required
             name='PlayerName'
             value={playerName}

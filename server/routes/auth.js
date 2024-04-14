@@ -4,7 +4,7 @@ import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'CybErc!tyb!ll!kEn$CtFD@PROJ';
+const JWT_SECRET = 'CEryb!lln$@PROJ';
 
 const router = express.Router();
 

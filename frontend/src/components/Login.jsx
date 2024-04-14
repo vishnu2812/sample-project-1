@@ -34,7 +34,7 @@ function Login() {
                 localStorage.setItem('authToken', authtoken);
                 setSuccessMessage('Login successful');
                 // Here you can do further actions like redirecting to another page
-                navigate('/Challenges');
+                navigate('/Donate');
             } else {
                 setErrorMessage('Login failed. Please try again with correct credentials.');
             }
@@ -104,7 +104,7 @@ function Login() {
         <p>or</p>
         <hr />
     </div>
-    <center style={{fontFamily:"Avenir"}}> <a href="/register" style={{textDecoration:"none", color:"white"}}>Sign Up to participate</a> </center>
+    <center style={{fontFamily:"Avenir"}}> <a href="/register" style={{textDecoration:"none", color:"white"}}>Sign Up</a> </center>
   
 </form>
 

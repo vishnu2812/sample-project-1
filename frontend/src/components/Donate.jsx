@@ -16,7 +16,12 @@ const Donate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      // User is not logged in, redirect to login page
+      window.location.href = '/Login'; // Assuming '/Login' is the route for the login page
+      return;
+    }
     try {
       const { data: { key } } = await axios.get("http://localhost:4000/api/getkey");
       
@@ -83,22 +88,21 @@ const Donate = () => {
        
        <div className="doc">
          <h3>Navigation</h3>
-         <a href="index.html">Home</a>
-         <a href="about.html">About</a>
-         <a href="donate.html">Donate</a>
-         <a href="contact.html">Contact</a>
+         <a href="/">Home</a>
+         <a href="/donate">Donate</a>
+         <a href="/contact">Contact</a>
        </div>
        <div className="contact">
          <h3>Contact Us</h3>
-         <a href="contact" target="_blank" rel="noopener noreferrer">4486 Richards Avenue, Modesto CA - 95354</a>
+         <a href="contact" target="_blank" rel="noopener noreferrer">United States</a>
          <a href="tel: +910000000000">200-000-0000</a>
-         <a href="mailto: ppppppp@gmail.com">charityjet@gmail.com</a>
+         <a href="mailto: ppppppp@gmail.com">Little@gmail.com</a>
        </div>
        <div className="social">
          <h3>Support</h3>
          <p>Help us shape a better future for children all over the world</p>
          <div className="side_btn">
-           <a href="donate.html">JOIN US TODAY</a>
+           <a href="/donate">JOIN US TODAY</a>
          </div>
        </div>
          </footer>

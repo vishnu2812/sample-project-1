@@ -20,7 +20,7 @@
 
 
 
-    <form className='formflex' action="https://formspree.io/f/xayrddwg" method="POST">
+    <form className='formflex' action="https://formspree.io/f/mwkgwzvl" method="POST">
         <div className='form-group'>
             <input
                 type='text'
@@ -63,9 +63,7 @@
         </div>
         <button type='submit'>Submit</button>
         <div className='hrbar'>
-            <hr />
-            <p>or</p>
-            <hr />
+           
         </div>
 
     </form>
